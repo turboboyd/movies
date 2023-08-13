@@ -4,6 +4,7 @@ import css from '../components/vse.module.css';
 import CardFilm from '../components/CardFilm/CardFilm';
 import { fetchTrending } from '../servise/Servise';
 import LoadMoreBtn from 'components/LoadMore/LoadMoreBtn';
+import Gallery from 'components/Gallery/Gallery';
 
 export default function Home() {
   const [trending, setTrending] = useState([]);
@@ -33,29 +34,7 @@ export default function Home() {
 
   return (
     <>
-      <ul className={css.content_wrapper}>
-        {trending.map(
-          ({
-            id,
-            title,
-            vote_average,
-            release_date,
-            poster_path,
-            backdrop_path,
-            overview,
-          }) => (
-            <Link key={id} to={`/movies/${id}`}>
-              <CardFilm
-                title={title}
-                src={`https://image.tmdb.org/t/p/w500${poster_path}`}
-                rating={Math.round(vote_average)}
-                data={release_date}
-                description={overview}
-              />
-            </Link>
-          )
-        )}
-      </ul>
+      <Gallery queryFilm={trending} />
       {showLoadMore && (
         <LoadMoreBtn handleLoadMore={handleLoadMore} disabled={isLoading} />
       )}

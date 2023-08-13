@@ -58,6 +58,8 @@ body {
 
 .news_card__text_wrapper {
   position: absolute;
+  width: 100%;
+  min-height: 100px;
   bottom: 0rem;
   padding: 1rem;
   color: white;
@@ -66,7 +68,6 @@ body {
 
 .news_card__title {
   transition: color 1s ease;
-  margin-bottom: 0.5rem;
 }
 
 .news_card__post_date {
@@ -136,4 +137,26 @@ body {
 .news_card__read_more:hover i {
   left: 0.5rem;
   color: var(--title-accent-collor);
+}
+
+
+.news_card__top_text{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  height: 24px;
+  background-color: #f5a623;
+  color: var(--header-white-color);
+  text-align: center;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 14px;
 }

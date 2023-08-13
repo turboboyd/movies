@@ -1,10 +1,11 @@
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchSearch } from 'servise/Servise';
 import Search from '../components/Search/Search';
-import CardFilm from 'components/CardFilm/CardFilm';
+// import CardFilm from 'components/CardFilm/CardFilm';
 import css from './Movies.module.css'
 import LoadMoreBtn from 'components/LoadMore/LoadMoreBtn';
+import Gallery from 'components/Gallery/Gallery';
 // import css from '../components/vse.module.css';
 
 export default function Movies() {
@@ -12,8 +13,8 @@ export default function Movies() {
   const [queryFilm, setQueryFilm] = useState([]);
   const [page, setPage] = useState(1);
   const [showLoadMore, setShowLoadMore] = useState(false);
+  const isOnMoviesPage = true;
   const searchName = ({query}) => {
-    console.log('name: ', query);
     setQuery(query);
   }
   useEffect(() => {
@@ -23,10 +24,7 @@ export default function Movies() {
     setShowLoadMore(false);
     async function fetchData() {
       const queryFilmData = await fetchSearch(query, page);
-      console.log('Запрос: ', query);
-      console.log('queryFilmData: ', queryFilmData);
-      setQueryFilm(queryFilmData.results);
-      console.log('queryFilmData: ', queryFilmData);
+      setQueryFilm(queryFilmData.results); 
       if (page === queryFilmData.total_pages) {
         return
       }
@@ -41,10 +39,12 @@ export default function Movies() {
 
   return (
     <>
-      {!query && (<div>
-        <h1 className={css.title}>Find your favourite movie</h1>
-        <p className={css.text}>Search by title, character, or gernre</p>
-      </div>)}
+      {!query && (
+        <div>
+          <h1 className={css.title}>Find your favourite movie</h1>
+          <p className={css.text}>Search by title, character, or gernre</p>
+        </div>
+      )}
       <Search searchName={searchName} />
       {query && (
         <div className={css.results_wrap}>
@@ -52,30 +52,7 @@ export default function Movies() {
           <h2 className={css.results_serch}>{query}</h2>
         </div>
       )}
-
-      <ul className={css.content_wrapper}>
-        {queryFilm.map(
-          ({
-            id,
-            title,
-            vote_average,
-            release_date,
-            poster_path,
-            backdrop_path,
-            overview,
-          }) => (
-            <Link key={id} to={`${id}`}>
-              <CardFilm
-                title={title}
-                src={`https://image.tmdb.org/t/p/w500${poster_path}`}
-                rating={vote_average}
-                data={release_date}
-                description={overview}
-              />
-            </Link>
-          )
-        )}
-      </ul>
+      <Gallery queryFilm={queryFilm} isOnMoviesPage={isOnMoviesPage} />
       {showLoadMore && <LoadMoreBtn handleLoadMore={handleLoadMore} />}
     </>
   );

@@ -102,15 +102,17 @@
 }
 
 .rating {
-  display: block;
-  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  height: 24px;
   background-color: #f5a623;
   color: var(--header-white-color);
-  padding: 5px 10px;
+  text-align: center;
+  padding: 2px 8px;
   border-radius: 4px;
   font-weight: bold;
   font-size: 14px;
-  margin-right: 10px;
 }
 
 .poster {

@@ -22,10 +22,10 @@ export default function MovieDetails() {
         console.log('queryData: ', queryData);
         console.log('movieId: ', movieId);
         setFilm(queryData);
-        setLoading(false); // Устанавливаем состояние загрузки в false после успешной загрузки
+        setLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
-        setLoading(false); // Устанавливаем состояние загрузки в false при возникновении ошибки
+        setLoading(false);
       }
     }
 
@@ -33,7 +33,7 @@ export default function MovieDetails() {
   }, [movieId]);
 
   if (loading) {
-    return <div>Loading...</div>; // Отображаем сообщение о загрузке
+    return <div>Loading...</div>;
   }
 
   return (

@@ -13,13 +13,14 @@
 .nav_link {
   display: inline-block;
   padding: 16px 24px;
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
+  font-size: 18px;
+  font-style: normal;
+  color: var(--header-white-color);
+  text-transform: uppercase;
   border-radius: 14px;
   background: var(--header-red-color);
 }
-.logo{
+.logo {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -36,11 +37,9 @@
 
 .icon_film {
   font-size: 24px;
-  fill: var(--header-white-color)
+  fill: var(--header-white-color);
 }
 
-
-.icon_film svg{
+.icon_film svg {
   width: 200px;
-
 }
