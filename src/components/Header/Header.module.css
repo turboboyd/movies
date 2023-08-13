@@ -1,0 +1,46 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0;
+}
+
+.nav_menu {
+  display: flex;
+  gap: 16px;
+}
+
+.nav_link {
+  display: inline-block;
+  padding: 16px 24px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 14px;
+  background: var(--header-red-color);
+}
+.logo{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.logo_name {
+  color: var(--header-red-color);
+  font-family: Poppins;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  letter-spacing: 3.36px;
+}
+
+.icon_film {
+  font-size: 24px;
+  fill: var(--header-white-color)
+}
+
+
+.icon_film svg{
+  width: 200px;
+
+}

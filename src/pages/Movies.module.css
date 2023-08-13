@@ -1,0 +1,30 @@
+.title {
+  color: var(--title-accent-collor);
+}
+
+.text {
+  color: var(--header-white-color);
+}
+
+.content_wrapper {
+  margin: 0 auto;
+  max-width: 1300px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.results_wrap{
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+.results {
+  font-size: 24px;
+  color: var(--header-white-color);
+}
+
+.results_serch {
+  color: var(--title-accent-collor);
+  font-size: 24px;
+}
