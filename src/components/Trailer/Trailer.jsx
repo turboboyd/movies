@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
+import YouTube from 'react-youtube';
 import { useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { fetchTrailer } from '../../servise/Servise';
-import YouTube from 'react-youtube';
-
+import css from './Trailer.module.css';
 
 export default function Trailer() {
   const { movieId } = useParams();
@@ -51,19 +51,29 @@ export default function Trailer() {
   };
 
   return (
-    <div>
-      {trailer.length > 0 && (
-        <div>
+    <>
+      {trailer.length > 0 && currentVideo && (
+        <div className={css.wrap}>
           <h2>{currentVideo.name}</h2>
           <p>{currentVideo.type}</p>
-          <YouTube videoId={currentVideo.key} opts={youtubeOpts} />
-          <div>
-            <button onClick={handlePrevVideo}>Previous</button>
-            <button onClick={handleNextVideo}>Next</button>
-          </div>
+          <YouTube
+            className={css.you_tube}
+            videoId={currentVideo.key}
+            opts={youtubeOpts}
+          />
+          <ul className={css.list_btn}>
+            <li>
+              <span className={css.btn} onClick={handlePrevVideo}>
+                Previous
+              </span>
+            </li>
+            <span className={css.btn} onClick={handleNextVideo}>
+              Next
+            </span>
+          </ul>
         </div>
       )}
-    </div>
+    </>
   );
 }
 
