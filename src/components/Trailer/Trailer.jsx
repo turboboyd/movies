@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { fetchTrailer } from '../../servise/Servise';
-import YouTube from 'react-youtube'; // Import react-youtube
+import YouTube from 'react-youtube';
 import css from './Trailer.module.css';
 
 export default function Trailer() {
@@ -43,10 +43,10 @@ export default function Trailer() {
   const currentVideo = trailer[currentVideoIndex];
 
   const youtubeOpts = {
-    height: '315',
-    width: '560',
+    height: '600px',
+    width: '100%',
     playerVars: {
-      autoplay: 0, // Autoplay off
+      autoplay: 0,
     },
   };
 
