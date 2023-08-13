@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { fetchTrailer } from '../../servise/Servise';
 import YouTube from 'react-youtube';
-import css from './Trailer.module.css';
+
 
 export default function Trailer() {
   const { movieId } = useParams();
