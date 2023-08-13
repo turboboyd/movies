@@ -1,7 +1,4 @@
-import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import css from '../components/vse.module.css';
-import CardFilm from '../components/CardFilm/CardFilm';
 import { fetchTrending } from '../servise/Servise';
 import LoadMoreBtn from 'components/LoadMore/LoadMoreBtn';
 import Gallery from 'components/Gallery/Gallery';

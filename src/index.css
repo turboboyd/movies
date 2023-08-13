@@ -24,6 +24,7 @@ body {
   background: linear-gradient(137deg, #190840 0%, #500d3b 100%);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color:var(--title-accent-collor)
 }
 
 img {

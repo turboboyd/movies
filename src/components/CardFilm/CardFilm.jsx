@@ -18,7 +18,12 @@ export default function CardFilm({
   const displayImg = src ? `https://image.tmdb.org/t/p/w500${src}` : defaultImg;
   return (
     <li className={css.news_card}>
-      <img className={css.news_card__image} src={displayImg} alt={title} />
+      <img
+        className={css.news_card__image}
+        src={displayImg}
+        alt={title}
+        loading="lazy"
+      />
       <div className={css.news_card__text_wrapper}>
         <div className={css.news_card__top_text}>
           <h2 className={css.news_card__title}>{displayTitle}</h2>

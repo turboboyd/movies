@@ -87,6 +87,7 @@
   display: flex;
   justify-content: space-between;
   gap: 32px;
+  margin-bottom: 24px;
 }
 .details_wrap_description {
   display: flex;
@@ -133,24 +134,45 @@
 .details_company {
   display: flex;
   flex-wrap: wrap;
-  width: 400px;
   gap: 16px;
   list-style: none;
   border-radius: 10px;
+  align-items: center;
+  border: 1px solid var(--header-white-color);;
+  border-radius: 16px;
+  padding: 20px;
+  width: 100%;
 }
 
 .details_company img {
-  width: 100px;
+    width: 150px;
+    background: var(--header-white-color);
+    padding: 8px;
 }
 .details_wrap_date {
   display: flex;
+  gap: 8px;
 }
 
 .details_text {
   color: var(--header-white-color);
 }
 
-.item_genres {
+.list_link{
   display: flex;
   gap: 16px;
 }
+
+.details_link {
+  display: block;
+  color: var(--header-white-color);
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--header-white-color);
+}
+
+.item_genres {  
+  display: flex;
+  gap: 16px;
+}
+
