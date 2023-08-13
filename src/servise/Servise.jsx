@@ -1,10 +1,10 @@
-import axios from 'axios';
+// import axios from 'axios';
 
 const fetch = require('node-fetch');
 const API_KEY =
   'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyZjhjMTAyMDI0MDIyNTYxMDc5NjhmY2NiODcwZGE2MSIsInN1YiI6IjY0ZDNjYjdlZGQ5MjZhMDFlNzMyN2JhMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.B6ar64KXg9EGEEntonw5miWhTgtZbhfpHsRZyrME33s';
 
-axios.defaults.baseURL = 'https://api.themoviedb.org/3';
+// axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 
 const startUrl = 'https://api.themoviedb.org/3/';
 const language = `language=en-US`;
