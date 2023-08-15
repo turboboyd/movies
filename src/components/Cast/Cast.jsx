@@ -43,7 +43,7 @@ export default function Cast() {
     if (actorId) {
       openModal(parseInt(actorId));
     }
-  }, [movieId, actorId]);
+  }, [movieId, actorId, openModal]);
 
   return (
     <>
