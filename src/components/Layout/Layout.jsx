@@ -1,7 +1,8 @@
 import Header from 'components/Header/Header';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import css from './conteiner.module.css'
+import css from './conteiner.module.css';
+import Loader from 'components/Loader/Loader';
 
 export default function Layout() {
   return (
@@ -11,7 +12,7 @@ export default function Layout() {
       </div>
       <main>
         <div className={css.container}>
-          <Suspense fallback={<div>loding1</div>}>
+          <Suspense fallback={<Loader />}>
             <Outlet />
           </Suspense>
         </div>

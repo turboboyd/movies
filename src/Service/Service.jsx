@@ -17,7 +17,7 @@ const options = {
 };
 
 export async function fetchTrending(page) {
-  const url = `${startUrl}trending/all/day?{language}&page=${page}`;
+  const url = `${startUrl}trending/all/day?${language}&page=${page}`;
   try {
     const response = await fetch(url, options);
     const json = await response.json();
@@ -30,7 +30,7 @@ export async function fetchTrending(page) {
 
 export async function fetchSearch(query, page) {
   const encodedQuery = encodeURIComponent(query);
-  const url = `${startUrl}search/movie?include_adult=false&{language}&page=${page}&query=${encodedQuery}`;
+  const url = `${startUrl}search/movie?include_adult=false&${language}&page=${page}&query=${encodedQuery}`;
 
   try {
     const response = await fetch(url, options);
@@ -42,8 +42,8 @@ export async function fetchSearch(query, page) {
   }
 }
 
-export async function fetchDetails(id) {
-  const url = `${startUrl}movie/${id}?{language}`;
+export async function fetchDetailsKino(id) {
+  const url = `${startUrl}movie/${id}?${language}`;
 
   try {
     const response = await fetch(url, options);
@@ -55,41 +55,45 @@ export async function fetchDetails(id) {
   }
 }
 
-export async function fetchCast(id) {
-  const url = `${startUrl}movie/${id}/credits?{language}`;
+export async function fetchDetails(id, name) {
+  const url = `${startUrl}movie/${id}/${name}?${language}`;
 
   try {
     const response = await fetch(url, options);
     const json = await response.json();
     return json;
   } catch (error) {
-    console.error('Error searching movies:', error);
+    console.error(error);
     return [];
   }
 }
 
-export async function fetchReviews(id) {
-  const url = `${startUrl}movie/${id}/reviews?${language}`;
+
+export async function getActorsInfo(id) {
+  const url = `https://api.themoviedb.org/3/person/${id}?language=en-US`;
 
   try {
     const response = await fetch(url, options);
     const json = await response.json();
     return json;
   } catch (error) {
-    console.error('Error searching movies:', error);
-    return [];
+    console.error(error);
+    return null;
   }
 }
 
-export async function fetchTrailer(id) {
-  const url = `${startUrl}movie/${id}/videos?${language}`;
+
+export async function getActorsMovieInfo(id) {
+  const url = `https://api.themoviedb.org/3/person/${id}/movie_credits`;
 
   try {
     const response = await fetch(url, options);
     const json = await response.json();
     return json;
   } catch (error) {
-    console.error('Error searching movies:', error);
-    return [];
+    console.error(error);
+    return null;
   }
 }
+
+

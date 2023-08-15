@@ -1,0 +1,13 @@
+.list_link{
+  display: flex;
+  gap: 16px;
+}
+
+.details_link {
+  display: block;
+  color: var(--header-white-color);
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--header-white-color);
+}
+

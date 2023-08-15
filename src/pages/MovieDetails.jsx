@@ -1,26 +1,30 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import { Link, Outlet, useParams } from 'react-router-dom';
-import { fetchDetails } from 'servise/Servise';
-import { animateScroll as scroll } from 'react-scroll';
+import { fetchDetailsKino } from 'Service/Service';
 import css from './MovieDetails.module.css';
-import GenreItem from '../components/GenreItem/GenreItem';
-import ProductionCompany from 'components/ProductionCompany/ProductionCompany';
 import defaultImg from '../images/default-img.jpg';
+import Poster from '../components//Poster/Poster';
+import GenresList from '../components/GenresList/GenresList';
+import DetailsLinks from '../components/DetailsLinks/DetailsLinks';
+import ProductionCompaniesList from '../components/ProductionCompaniesList/ProductionCompaniesList';
+import Section from 'components/Section/Section';
+import Loader from 'components/Loader/Loader';
+import ScrollToTopButton from 'components/ScrollToTopButton/ScrollToTopButton';
 
 export default function MovieDetails() {
   const { movieId } = useParams();
   const [film, setFilm] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (!movieId) {
-      console.log('est');
       return;
     }
     async function fetchData() {
       try {
-        const queryData = await fetchDetails(movieId);
-        console.log('queryData: ', queryData);
+        const queryData = await fetchDetailsKino(movieId);
         setFilm(queryData);
+        setIsLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -29,27 +33,26 @@ export default function MovieDetails() {
     fetchData();
   }, [movieId]);
 
-  const scrollToCast = () => {
-    scroll.scrollTo(800);
-  };
   const displayImg = film.poster_path
     ? `https://image.tmdb.org/t/p/w500${film.poster_path}`
     : defaultImg;
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
   return (
     <>
-      <Link to="/">
-        <button>НАЗАД</button>
-      </Link>
-      <>
+      <Section>
+        <Link to="/">
+          <button>НАЗАД</button>
+        </Link>
         <div className={css.details}>
-          <a href={film.homepage} target="_blank" rel="noopener noreferrer">
-            <img
-              className={css.poster}
-              src={displayImg}
-              alt={film.original_title}
-              loading="lazy"
-            />
-          </a>
+          <Poster
+            imageUrl={displayImg}
+            altText={film.original_title}
+            homepageLink={film.homepage}
+          />
           <div className={css.details_wrap_description}>
             <div className={css.details_wrap_title}>
               <h1 className={css.title}>{film.original_title}</h1>
@@ -61,15 +64,7 @@ export default function MovieDetails() {
               <p className={css.details_text}>Release:</p>
               <span className={css.details_text}>{film.release_date}</span>
               <div>
-                <div>
-                  {film.genres && (
-                    <ul className={css.item_genres}>
-                      {film.genres.map(genre => (
-                        <GenreItem key={genre.id} genre={genre} />
-                      ))}
-                    </ul>
-                  )}
-                </div>
+                <GenresList genres={film.genres} />
               </div>
             </div>
             <span className={css.details_text}>{film.runtime}</span>
@@ -81,53 +76,24 @@ export default function MovieDetails() {
             <div className={css.product_wrap}>
               {film.production_companies &&
               film.production_companies.length > 0 ? (
-                <ul className={css.details_company}>
-                  {film.production_companies.map(company => (
-                    <ProductionCompany key={company.id} company={company} />
-                  ))}
-                </ul>
+                <ProductionCompaniesList
+                  companies={film.production_companies}
+                />
               ) : (
                 <p>No production companies available.</p>
               )}
             </div>
-            <ul className={css.list_link}>
-              <li>
-                <Link
-                  className={css.details_link}
-                  to="cast"
-                  smooth="true"
-                  onClick={scrollToCast}
-                >
-                  Cast
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className={css.details_link}
-                  to="reviews"
-                  smooth="true"
-                  onClick={scrollToCast}
-                >
-                  Reviews
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className={css.details_link}
-                  to="trailer"
-                  smooth="true"
-                  onClick={scrollToCast}
-                >
-                  Trailer
-                </Link>
-              </li>
-            </ul>
+            <DetailsLinks />
+            <ScrollToTopButton />
           </div>
         </div>
-        <Suspense fallback={<div>loding21</div>}>
+      </Section>
+
+      <Section>
+        <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>
-      </>
+      </Section>
     </>
   );
 }

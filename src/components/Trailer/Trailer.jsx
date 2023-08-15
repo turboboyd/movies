@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import YouTube from 'react-youtube';
 import { useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-import { fetchTrailer } from '../../servise/Servise';
+import { fetchDetails } from '../../Service/Service';
 import css from './Trailer.module.css';
 
 export default function Trailer() {
@@ -17,8 +17,7 @@ export default function Trailer() {
 
     async function fetchData() {
       try {
-        const { results: queryResults } = await fetchTrailer(movieId);
-        console.log('Video: ', queryResults);
+        const { results: queryResults } = await fetchDetails(movieId, 'videos');
         setTrailer(queryResults);
       } catch (error) {
         console.error('Error fetching data:', error);

@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
-import { fetchTrending } from '../servise/Servise';
+import { fetchTrending } from '../Service/Service';
 import LoadMoreBtn from 'components/LoadMore/LoadMoreBtn';
-import Gallery from 'components/Gallery/Gallery';
+import Gallery from 'components/GalleryFilm/GalleryFilm';
+import Loader from 'components/Loader/Loader';
+import ScrollToTopButton from 'components/ScrollToTopButton/ScrollToTopButton';
 
 export default function Home() {
   const [trending, setTrending] = useState([]);
@@ -14,9 +16,8 @@ export default function Home() {
     setIsLoading(true);
     async function fetchData() {
       const trendingData = await fetchTrending(page);
-      setIsLoading(false);
       setTrending(prev => [...prev, ...trendingData.results]);
-      console.log('trendingData.results: ', trendingData.results);
+      setIsLoading(false);
       if (page >= trendingData.total_pages) {
         return;
       }
@@ -35,6 +36,8 @@ export default function Home() {
       {showLoadMore && (
         <LoadMoreBtn handleLoadMore={handleLoadMore} disabled={isLoading} />
       )}
+      {isLoading && <Loader />}
+      <ScrollToTopButton />
     </>
   );
 }

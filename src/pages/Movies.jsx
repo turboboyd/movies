@@ -1,40 +1,59 @@
-// import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { fetchSearch } from 'servise/Servise';
+import { fetchSearch } from 'Service/Service';
 import Search from '../components/Search/Search';
-// import CardFilm from 'components/CardFilm/CardFilm';
-import css from './Movies.module.css'
+import css from './Movies.module.css';
 import LoadMoreBtn from 'components/LoadMore/LoadMoreBtn';
-import Gallery from 'components/Gallery/Gallery';
-// import css from '../components/vse.module.css';
+import GalleryFilm from 'components/GalleryFilm/GalleryFilm';
+import Loader from 'components/Loader/Loader';
+import PropTypes from 'prop-types';
+import ScrollToTopButton from 'components/ScrollToTopButton/ScrollToTopButton';
 
 export default function Movies() {
   const [query, setQuery] = useState('');
   const [queryFilm, setQueryFilm] = useState([]);
   const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
   const [showLoadMore, setShowLoadMore] = useState(false);
   const isOnMoviesPage = true;
-  const searchName = ({query}) => {
-    setQuery(query);
-  }
+
+  const searchName = ({ searchName }) => {
+    if (query === searchName) {
+      console.log('Равны: ', searchName);
+      return;
+    }
+    setQuery(searchName);
+    setQueryFilm([]);
+    setPage(1);
+  };
+
   useEffect(() => {
     if (!query) {
       return;
     }
+
     setShowLoadMore(false);
+
     async function fetchData() {
-      const queryFilmData = await fetchSearch(query, page);
-      setQueryFilm(queryFilmData.results); 
-      if (page === queryFilmData.total_pages) {
-        return
+      try {
+        setLoading(true);
+        const queryFilmData = await fetchSearch(query, page);
+        setQueryFilm(prevQueryFilm => [
+          ...prevQueryFilm,
+          ...queryFilmData.results,
+        ]);
+        setShowLoadMore(page < queryFilmData.total_pages);
+      } catch (error) {
+        console.error('An error occurred while fetching data:', error);
+      } finally {
+        setLoading(false);
       }
-      setShowLoadMore(true);
     }
+
     fetchData();
   }, [query, page]);
 
   const handleLoadMore = () => {
-    setPage(prevState => prevState + 1);
+    setPage(prevPage => prevPage + 1);
   };
 
   return (
@@ -42,18 +61,39 @@ export default function Movies() {
       {!query && (
         <div>
           <h1 className={css.title}>Find your favourite movie</h1>
-          <p className={css.text}>Search by title, character, or gernre</p>
+          <p className={css.text}>Search by title, character, or genre</p>
         </div>
       )}
+
       <Search searchName={searchName} />
+
       {query && (
         <div className={css.results_wrap}>
           <p className={css.results}>Search results for:</p>
           <h2 className={css.results_serch}>{query}</h2>
         </div>
       )}
-      <Gallery queryFilm={queryFilm} isOnMoviesPage={isOnMoviesPage} />
+
+      <GalleryFilm queryFilm={queryFilm} isOnMoviesPage={isOnMoviesPage} />
+      {queryFilm.length === 0 && <p>Nothing found</p>}
       {showLoadMore && <LoadMoreBtn handleLoadMore={handleLoadMore} />}
+      {loading && <Loader />}
+      <ScrollToTopButton />
     </>
   );
 }
+
+Movies.propTypes = {
+  searchName: PropTypes.func.isRequired,
+  queryFilm: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+    })
+  ),
+  isOnMoviesPage: PropTypes.bool.isRequired,
+};
+
+Movies.defaultProps = {
+  queryFilm: [],
+};

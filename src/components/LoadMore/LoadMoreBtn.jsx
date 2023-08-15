@@ -1,5 +1,6 @@
 import React from 'react';
 import css from './LoadMoreBtn.module.css';
+import PropTypes from 'prop-types';
 
 function LoadMoreBtn(props) {
   return (
@@ -18,3 +19,8 @@ function LoadMoreBtn(props) {
 }
 
 export default LoadMoreBtn;
+
+LoadMoreBtn.propTypes = {
+  handleLoadMore: PropTypes.func.isRequired,
+};
+

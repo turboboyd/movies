@@ -1,7 +1,7 @@
-// GenreItem.jsx
-
 import React from 'react';
 import css from './GenreItem.module.css'
+import PropTypes from 'prop-types';
+
 export default function GenreItem({ genre }) {
   return (
     <li className={css.item}>
@@ -9,3 +9,9 @@ export default function GenreItem({ genre }) {
     </li>
   );
 }
+
+GenreItem.propTypes = {
+  genre: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+  }).isRequired,
+};
