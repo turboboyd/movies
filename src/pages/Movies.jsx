@@ -10,7 +10,6 @@ import ScrollToTopButton from 'components/ScrollToTopButton/ScrollToTopButton';
 import { useSearchParams } from 'react-router-dom';
 
 export default function Movies() {
-  // const [query, setQuery] = useState('');
   const [queryFilm, setQueryFilm] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -20,8 +19,6 @@ export default function Movies() {
 
     const [searchParams, setSearchParams] = useSearchParams();
     const query = searchParams.get('query');
-    // console.log('query: ', query);
-    // const handleInput = e => setSearchParams({ query: e.target.value });
 
   const searchName = ({ searchName }) => {
     console.log('searchName: ', searchName);  
@@ -31,7 +28,6 @@ export default function Movies() {
       return;
     }
     setSearchParams({ query: searchName });
-    // setQuery(searchName);
     setQueryFilm([]);
     setPage(1);
   };
