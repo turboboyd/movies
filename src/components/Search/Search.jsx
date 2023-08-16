@@ -4,15 +4,11 @@ import PropTypes from 'prop-types';
 
 export default function Search(props) {
   const [searchName, setSearchName] = useState('');
-  // const [searchParams, setSearchParams] = useSearchParams();
   const handleInput = e => setSearchName(e.currentTarget.value);
 
   const handleSubmit = e => {
     e.preventDefault();
-    // setSearchParams({ dog: searchName }); // Use searchName from the state
-    // console.log('setSearchParams: ', searchParams);
     props.searchName({ searchName });
-    // setSearchName('');
   };
 
   return (
