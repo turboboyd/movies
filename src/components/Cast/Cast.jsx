@@ -14,16 +14,6 @@ export default function Cast() {
   const [casts, setCasts] = useState([]);
   const [showModal, setShowModal] = useState(false);
 
-  const openModal = actorId => {
-    navigate(`/movies/${movieId}/cast/${actorId}`);
-    setShowModal(true);
-  };
-
-  const closeModal = () => {
-    setShowModal(false);
-    navigate(`/movies/${movieId}/cast`);
-  };
-
   useEffect(() => {
     if (!movieId) {
       return;
@@ -43,8 +33,19 @@ export default function Cast() {
     if (actorId) {
       openModal(parseInt(actorId));
     }
-  }, [movieId, actorId, openModal]);
+  }, [movieId, actorId]);
+  
+  const openModal = actorId => {
+    navigate(`/movies/${movieId}/cast/${actorId}`);
+    setShowModal(true);
+  };
 
+  
+  const closeModal = () => {
+    setShowModal(false);
+    navigate(`/movies/${movieId}/cast`);
+  };
+  
   return (
     <>
       <ul className={css.wrap}>

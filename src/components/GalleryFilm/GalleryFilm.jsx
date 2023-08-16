@@ -37,15 +37,15 @@ export default function GalleryFilm({ queryFilm, isOnMoviesPage }) {
 GalleryFilm.propTypes = {
   queryFilm: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-      vote_average: PropTypes.number.isRequired,
-      release_date: PropTypes.string.isRequired,
-      poster_path: PropTypes.string.isRequired,
-      overview: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      first_air_date: PropTypes.string.isRequired,
+      id: PropTypes.number,
+      title: PropTypes.string,
+      vote_average: PropTypes.number,
+      release_date: PropTypes.string,
+      poster_path: PropTypes.string,
+      overview: PropTypes.string,
+      name: PropTypes.string,
+      first_air_date: PropTypes.string,
     })
-  ).isRequired,
-  isOnMoviesPage: PropTypes.bool.isRequired,
+  ),
+  isOnMoviesPage: PropTypes.bool,
 };

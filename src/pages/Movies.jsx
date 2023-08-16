@@ -7,25 +7,35 @@ import GalleryFilm from 'components/GalleryFilm/GalleryFilm';
 import Loader from 'components/Loader/Loader';
 import PropTypes from 'prop-types';
 import ScrollToTopButton from 'components/ScrollToTopButton/ScrollToTopButton';
+import { useSearchParams } from 'react-router-dom';
 
 export default function Movies() {
-  const [query, setQuery] = useState('');
+  // const [query, setQuery] = useState('');
   const [queryFilm, setQueryFilm] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [showLoadMore, setShowLoadMore] = useState(false);
   const isOnMoviesPage = true;
 
+
+    const [searchParams, setSearchParams] = useSearchParams();
+    const query = searchParams.get('query');
+    // console.log('query: ', query);
+    // const handleInput = e => setSearchParams({ query: e.target.value });
+
   const searchName = ({ searchName }) => {
+    console.log('searchName: ', searchName);  
+    console.log('searchName: ', searchName);
     if (query === searchName) {
       console.log('Равны: ', searchName);
       return;
     }
-    setQuery(searchName);
+    setSearchParams({ query: searchName });
+    // setQuery(searchName);
     setQueryFilm([]);
     setPage(1);
   };
-
+  
   useEffect(() => {
     if (!query) {
       return;
@@ -84,16 +94,12 @@ export default function Movies() {
 }
 
 Movies.propTypes = {
-  searchName: PropTypes.func.isRequired,
   queryFilm: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
     })
   ),
-  isOnMoviesPage: PropTypes.bool.isRequired,
 };
 
-Movies.defaultProps = {
-  queryFilm: [],
-};
+
