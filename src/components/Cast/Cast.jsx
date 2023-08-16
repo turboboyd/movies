@@ -31,21 +31,20 @@ export default function Cast() {
     fetchData();
 
     if (actorId) {
-      setShowModal(true); 
+      setShowModal(true);
     }
   }, [movieId, actorId]);
-  
+
   const openModal = actorId => {
     navigate(`/movies/${movieId}/cast/${actorId}`);
     setShowModal(true);
   };
 
-  
   const closeModal = () => {
     setShowModal(false);
     navigate(`/movies/${movieId}/cast`);
   };
-  
+
   return (
     <>
       <ul className={css.wrap}>
@@ -61,10 +60,16 @@ export default function Cast() {
             ) : (
               <CgProfile size={100} color="white" />
             )}
-            <div className={css.wrap_actor}>
+            <div className={css.news_card__text_wrapper}>
+              <div className={css.news_card__top_text}>
+                <h2 className={css.actor}>{name}</h2>
+                <span className={css.rating}>{character}</span>
+              </div>
+            </div>
+            {/* <div className={css.wrap_actor}>
               <h3 className={css.actor}>{name}</h3>
               <p>{character}</p>
-            </div>
+            </div> */}
           </li>
         ))}
       </ul>
