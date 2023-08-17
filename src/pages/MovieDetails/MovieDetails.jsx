@@ -48,7 +48,7 @@ export default function MovieDetails() {
   return (
     <>
       <Section>
-        <Link className={css.button_back} to={location.state.from}>
+        <Link className={css.button_back} to={location.state?.from ?? '/'}>
           <IoArrowBackSharp size={20} />
         </Link>
         <div className={css.details}>
