@@ -5,7 +5,6 @@ import Gallery from '../GalleryFilm/GalleryFilm';
 import ActorInfo from '../ActorInfo/ActorInfo';
 import Section from '../Section/Section';
 
-
 export default function Actor() {
   const { actorId } = useParams();
   const [actor, setActor] = useState(null);
@@ -16,7 +15,6 @@ export default function Actor() {
       try {
         const queryData = await getActorsInfo(actorId);
         const queryDataMovies = await getActorsMovieInfo(actorId);
-        console.log('queryDataMovies: ', queryDataMovies.cast);
 
         setActor(queryData);
         setMovies(queryDataMovies.cast);
@@ -30,7 +28,7 @@ export default function Actor() {
 
   return (
     <>
-      <Section >
+      <Section>
         <ActorInfo actor={actor} />
       </Section>
       <Section>
@@ -39,5 +37,3 @@ export default function Actor() {
     </>
   );
 }
-
-

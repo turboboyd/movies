@@ -7,7 +7,7 @@ import GalleryFilm from 'components/GalleryFilm/GalleryFilm';
 import Loader from 'components/Loader/Loader';
 import PropTypes from 'prop-types';
 import ScrollToTopButton from 'components/ScrollToTopButton/ScrollToTopButton';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 export default function Movies() {
   const [queryFilm, setQueryFilm] = useState([]);
@@ -19,14 +19,8 @@ export default function Movies() {
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query');
 
-  const location = useLocation();
-  console.log('location: ', location);
-
   const searchName = ({ searchName }) => {
-    console.log('searchName: ', searchName);
-    console.log('searchName: ', searchName);
     if (query === searchName) {
-      console.log('Равны: ', searchName);
       return;
     }
     setSearchParams({ query: searchName });
