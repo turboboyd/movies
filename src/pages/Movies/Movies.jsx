@@ -67,7 +67,7 @@ export default function Movies() {
   return (
     <>
       {!query && (
-        <div>
+        <div className={css.wrap}>
           <h1 className={css.title}>Find your favourite movie</h1>
           <p className={css.text}>Search by title, character, or genre</p>
         </div>
