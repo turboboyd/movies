@@ -47,32 +47,32 @@ export default function Cast() {
 
   return (
     <>
-      <ul className={css.wrap}>
-        {casts.map(({ id, profile_path, name, character }) => (
-          <li className={css.card} key={id} onClick={() => openModal(id)}>
-            {profile_path ? (
-              <img
-                src={`https://image.tmdb.org/t/p/w500${profile_path}`}
-                alt={name}
-                width="150"
-                loading="lazy"
-              />
-            ) : (
-              <CgProfile size={100} color="white" />
-            )}
-            <div className={css.news_card__text_wrapper}>
-              <div className={css.news_card__top_text}>
-                <h2 className={css.actor}>{name}</h2>
-                <span className={css.rating}>{character}</span>
+      {casts.length === 0 ? (
+        <p className={css.text}>Sorry, no information available.</p>
+      ) : (
+        <ul className={css.wrap}>
+          {casts.map(({ id, profile_path, name, character }) => (
+            <li className={css.card} key={id} onClick={() => openModal(id)}>
+              {profile_path ? (
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${profile_path}`}
+                  alt={name}
+                  width="150"
+                  loading="lazy"
+                />
+              ) : (
+                <CgProfile size={100} color="white" />
+              )}
+              <div className={css.news_card__text_wrapper}>
+                <div className={css.news_card__top_text}>
+                  <h2 className={css.actor}>{name}</h2>
+                  <span className={css.rating}>{character}</span>
+                </div>
               </div>
-            </div>
-            {/* <div className={css.wrap_actor}>
-              <h3 className={css.actor}>{name}</h3>
-              <p>{character}</p>
-            </div> */}
-          </li>
-        ))}
-      </ul>
+            </li>
+          ))}
+        </ul>
+      )}
       {showModal && (
         <Modal actorId={parseInt(movieId)} onClose={closeModal}>
           <Actor />

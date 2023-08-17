@@ -51,7 +51,7 @@ export default function Trailer() {
 
   return (
     <>
-      {trailer.length > 0 && currentVideo && (
+      {trailer.length > 0 && currentVideo ? (
         <div className={css.wrap}>
           <h2>{currentVideo.name}</h2>
           <p>{currentVideo.type}</p>
@@ -71,6 +71,8 @@ export default function Trailer() {
             </span>
           </ul>
         </div>
+      ) : (
+        <p className={css.text}>Sorry, no trailer.</p>
       )}
     </>
   );

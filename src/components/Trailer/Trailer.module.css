@@ -16,3 +16,8 @@
     width: 200px;
     margin: 0 auto
 }
+
+.text{
+  text-align: center;
+    color: var(--header-white-color);
+}

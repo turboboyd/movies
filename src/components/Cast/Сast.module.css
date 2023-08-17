@@ -44,7 +44,7 @@
   min-height: 100px;
   bottom: 0rem;
   padding: 1rem;
-  color: white;
+  color: var(--header-white-color);;
 }
 
 .news_card__top_text {
@@ -67,4 +67,9 @@
 
 .card:hover {
   transform: scale(1.03);
+}
+
+.text{
+  text-align: center;
+    color: var(--header-white-color);
 }
