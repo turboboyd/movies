@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import css from './Header.module.css';
 import React from 'react';
-
+import {StyledLink} from './Header.styled.js';
 import { BsFilm } from 'react-icons/bs';
 
 export default function Header() {
@@ -14,12 +14,12 @@ export default function Header() {
         </div>
       </Link>
       <nav className={css.nav_menu}>
-        <Link className={css.nav_link} to="/">
+        <StyledLink className={css.nav_link} to="/">
           Home
-        </Link>
-        <Link className={css.nav_link} to="/movies">
+        </StyledLink>
+        <StyledLink className={css.nav_link} to="/movies">
           Movies
-        </Link>
+        </StyledLink>
       </nav>
     </header>
   );
