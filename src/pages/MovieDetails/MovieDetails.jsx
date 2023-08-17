@@ -87,7 +87,7 @@ export default function MovieDetails() {
                 <p>No production companies available.</p>
               )}
             </div>
-            <DetailsLinks />
+            <DetailsLinks/>
             <ScrollToTopButton />
           </div>
         </div>

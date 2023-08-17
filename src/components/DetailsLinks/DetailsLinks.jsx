@@ -7,7 +7,6 @@ export default function DetailsLinks() {
   const scrollToCast = () => {
     scroll.scrollTo(800);
   };
-
   return (
     <ul className={css.list_link}>
       <li>
