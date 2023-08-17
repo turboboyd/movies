@@ -1,4 +1,4 @@
-.list_link{
+.list_link {
   display: flex;
   gap: 16px;
 }
@@ -11,3 +11,8 @@
   border: 1px solid var(--header-white-color);
 }
 
+@media (min-width: 325px) and (max-width: 768px) {
+  .list_link {
+    justify-content: center;
+  }
+}

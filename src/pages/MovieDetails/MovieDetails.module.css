@@ -127,3 +127,41 @@
   margin-bottom: 16px;
 }
 
+
+@media (max-width: 768px) {
+  .movie_details {
+    flex-direction: column;
+  }
+
+  .movie_poster {
+    max-width: 100%;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 8px;
+  }
+}
+
+@media (min-width: 325px) and (max-width: 768px) {
+  .details {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .details_wrap_description {
+    width: 100%;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1440px) {
+  .details_wrap_title {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .details_wrap_date {
+    flex-direction: column;
+  }
+  
+  .button_back {
+    margin-bottom: 8px;
+  }
+}
