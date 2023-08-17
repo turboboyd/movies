@@ -6,6 +6,7 @@ const API_KEY =
 
 // axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 
+
 const startUrl = 'https://api.themoviedb.org/3/';
 const language = `language=en-US`;
 const options = {
@@ -17,7 +18,7 @@ const options = {
 };
 
 export async function fetchTrending(page) {
-  const url = `${startUrl}trending/all/day?${language}&page=${page}`;
+  const url = `${startUrl}trending/movie/day?${language}&page=${page}`;
   try {
     const response = await fetch(url, options);
     const json = await response.json();

@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { fetchSearch } from 'Service/Service';
-import Search from '../components/Search/Search';
+import Search from '../../components/Search/Search';
 import css from './Movies.module.css';
 import LoadMoreBtn from 'components/LoadMore/LoadMoreBtn';
 import GalleryFilm from 'components/GalleryFilm/GalleryFilm';
 import Loader from 'components/Loader/Loader';
 import PropTypes from 'prop-types';
 import ScrollToTopButton from 'components/ScrollToTopButton/ScrollToTopButton';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 export default function Movies() {
   const [queryFilm, setQueryFilm] = useState([]);
@@ -16,12 +16,14 @@ export default function Movies() {
   const [showLoadMore, setShowLoadMore] = useState(false);
   const isOnMoviesPage = true;
 
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get('query');
 
-    const [searchParams, setSearchParams] = useSearchParams();
-    const query = searchParams.get('query');
+  const location = useLocation();
+  console.log('location: ', location);
 
   const searchName = ({ searchName }) => {
-    console.log('searchName: ', searchName);  
+    console.log('searchName: ', searchName);
     console.log('searchName: ', searchName);
     if (query === searchName) {
       console.log('Равны: ', searchName);
@@ -31,7 +33,7 @@ export default function Movies() {
     setQueryFilm([]);
     setPage(1);
   };
-  
+
   useEffect(() => {
     if (!query) {
       return;
@@ -81,7 +83,7 @@ export default function Movies() {
       )}
 
       <GalleryFilm queryFilm={queryFilm} isOnMoviesPage={isOnMoviesPage} />
-      {queryFilm.length === 0 && <p>Nothing found</p>}
+      {query && !loading && queryFilm.length === 0 && <p>Nothing found</p>}
       {showLoadMore && <LoadMoreBtn handleLoadMore={handleLoadMore} />}
       {loading && <Loader />}
       <ScrollToTopButton />
@@ -97,5 +99,3 @@ Movies.propTypes = {
     })
   ),
 };
-
-

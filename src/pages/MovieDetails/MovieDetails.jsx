@@ -2,19 +2,23 @@ import React, { useState, useEffect, Suspense } from 'react';
 import { Link, Outlet, useParams } from 'react-router-dom';
 import { fetchDetailsKino } from 'Service/Service';
 import css from './MovieDetails.module.css';
-import defaultImg from '../images/default-img.jpg';
-import Poster from '../components//Poster/Poster';
-import GenresList from '../components/GenresList/GenresList';
-import DetailsLinks from '../components/DetailsLinks/DetailsLinks';
-import ProductionCompaniesList from '../components/ProductionCompaniesList/ProductionCompaniesList';
+import defaultImg from '../../images/default-img.jpg';
+import Poster from '../../components/Poster/Poster';
+import GenresList from '../../components/GenresList/GenresList';
+import DetailsLinks from '../../components/DetailsLinks/DetailsLinks';
+import ProductionCompaniesList from '../../components/ProductionCompaniesList/ProductionCompaniesList';
 import Section from 'components/Section/Section';
 import Loader from 'components/Loader/Loader';
 import ScrollToTopButton from 'components/ScrollToTopButton/ScrollToTopButton';
+import { IoArrowBackSharp } from 'react-icons/io5';
+import { useLocation } from 'react-router-dom';
 
 export default function MovieDetails() {
   const { movieId } = useParams();
   const [film, setFilm] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+
+  const location = useLocation();
 
   useEffect(() => {
     if (!movieId) {
@@ -44,8 +48,8 @@ export default function MovieDetails() {
   return (
     <>
       <Section>
-        <Link to="/">
-          <button>НАЗАД</button>
+        <Link className={css.button_back} to={location.state.from}>
+          <IoArrowBackSharp size={20} />
         </Link>
         <div className={css.details}>
           <Poster

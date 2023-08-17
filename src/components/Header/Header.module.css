@@ -43,3 +43,73 @@
 .icon_film svg {
   width: 200px;
 }
+
+
+/* Общие стили для всего диапазона */
+.header {
+  padding: 16px 0;
+}
+
+.nav_menu {
+  gap: 12px;
+}
+
+.nav_link {
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 10px;
+}
+
+.logo_name {
+  font-size: 28px;
+  letter-spacing: 2.8px;
+}
+
+.icon_film {
+  font-size: 20px;
+}
+
+/* Медиа-запросы для изменения стилей в указанном диапазоне */
+@media (min-width: 325px) and (max-width: 768px) {
+  .nav_menu {
+    gap: 8px;
+  }
+  
+  .nav_link {
+    padding: 8px 16px; /* Уменьшенный размер для мобильной версии */
+    font-size: 14px;
+  }
+  
+  .logo_name {
+    font-size: 16px;
+    letter-spacing: 2.4px;
+  }
+  
+  .icon_film {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1440px) {
+  .header {
+    padding: 20px 0;
+  }
+  
+  .nav_menu {
+    gap: 14px;
+  }
+  
+  .nav_link {
+    padding: 14px 22px;
+    font-size: 16px;
+  }
+  
+  .logo_name {
+    font-size: 28px;
+    letter-spacing: 2.8px;
+  }
+  
+  .icon_film {
+    font-size: 22px;
+  }
+}

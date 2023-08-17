@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchTrending } from '../Service/Service';
+import { fetchTrending } from '../../Service/Service';
 import LoadMoreBtn from 'components/LoadMore/LoadMoreBtn';
 import Gallery from 'components/GalleryFilm/GalleryFilm';
 import Loader from 'components/Loader/Loader';

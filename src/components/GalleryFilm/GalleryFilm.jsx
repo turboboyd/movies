@@ -2,8 +2,11 @@ import { Link } from 'react-router-dom';
 import CardFilm from '../CardFilm/CardFilm';
 import PropTypes from 'prop-types';
 import css from './GalleryFilm.module.css';
+import { useLocation } from 'react-router-dom';
 
 export default function GalleryFilm({ queryFilm, isOnMoviesPage }) {
+  const location = useLocation();
+
   return (
     <ul className={css.content_wrapper}>
       {queryFilm.map(
@@ -17,7 +20,11 @@ export default function GalleryFilm({ queryFilm, isOnMoviesPage }) {
           name,
           first_air_date,
         }) => (
-          <Link key={id} to={isOnMoviesPage ? `${id}` : `/movies/${id}`}>
+          <Link
+            key={id}
+            to={isOnMoviesPage ? `${id}` : `/movies/${id}`}
+            state={{ from: location }}
+          >
             <CardFilm
               title={title}
               src={poster_path}
