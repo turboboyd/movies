@@ -1,4 +1,14 @@
 @import '~normalize.css';
+:root {
+  --main-bgr-color: #190840;
+  --main-bgr-color-accent: #500d3b;
+  --header-white-color: #f6f6f6;
+  --header-red-color: #cf0000;
+  --cyan: #0505a9;
+  --dark: #ffffff;
+  --borderW: 3px;
+  --title-accent-collor: yellow;
+}
 
 html {
   box-sizing: border-box;
@@ -22,7 +32,7 @@ body {
     Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
   color: #212121;
   background: linear-gradient(137deg, #190840 0%, #500d3b 100%);
-  height: 100vh;
+  height: 150vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color:var(--title-accent-collor)
@@ -64,13 +74,3 @@ button {
   cursor: pointer;
 }
 
-:root {
-  --main-bgr-color: #190840;
-  --main-bgr-color-accent: #500d3b;
-  --header-white-color: #f6f6f6;
-  --header-red-color: #cf0000;
-  --cyan: #0505a9;
-  --dark: #ffffff;
-  --borderW: 3px;
-  --title-accent-collor: yellow;
-}

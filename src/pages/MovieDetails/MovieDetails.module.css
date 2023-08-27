@@ -125,7 +125,17 @@
   border-radius: 10px;
   border: 1px solid var(--header-white-color);
   margin-bottom: 16px;
+  transition: border 0.3s, color 0.3s, transform 0.3s;
 }
+
+
+.button_back:hover, .button_back:focus  {
+  color: var(--header-red-color);
+  border: 1px solid var(--header-red-color);
+  transform: scale(1.05);
+}
+
+
 
 
 @media (max-width: 768px) {

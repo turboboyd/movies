@@ -9,7 +9,15 @@
   padding: 8px 16px;
   border-radius: 10px;
   border: 1px solid var(--header-white-color);
+  transition: color 0.5s, border-color 0.5s;
 }
+
+.details_link:hover,
+.details_link:focus {
+  color: var(--header-red-color);
+  border-color: var(--header-red-color); 
+}
+
 
 @media (min-width: 325px) and (max-width: 768px) {
   .list_link {
